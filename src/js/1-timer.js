@@ -22,7 +22,7 @@ const options = {
   onClose(selectedDates) {
     const selectedDate = selectedDates[0];
 
-  if (selectedDate.getTime() < Date.now()) {
+  if (selectedDate.getTime() <= Date.now()) {
       iziToast.error({
           title: "Error",
           message: "Please choose a date in the future",
@@ -36,7 +36,7 @@ const options = {
 },
 };
 
-flatpickr('#datetime-picker', options);
+flatpickr(dateTimePicker, options);
 
 startBtn.addEventListener('click', () => {
     startBtn.disabled = true;
@@ -54,10 +54,10 @@ startBtn.addEventListener('click', () => {
 
         const time = convertMs(diff)
 
-        days.innerHTML = addLeadingZero(time.days);
-        hours.innerHTML = addLeadingZero(time.hours);
-        minutes.innerHTML = addLeadingZero(time.minutes);
-        seconds.innerHTML = addLeadingZero(time.seconds);
+        days.textContent = addLeadingZero(time.days);
+        hours.textContent = addLeadingZero(time.hours);
+        minutes.textContent = addLeadingZero(time.minutes);
+        seconds.textContent = addLeadingZero(time.seconds);
     }, 1000);
 })
 
